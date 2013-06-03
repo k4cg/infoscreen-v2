@@ -1,7 +1,7 @@
 local INTERVAL = 30
 gl.setup(1024, 768)
 
-deck = {"home", "stats", "analogclock", "twitter", "tumblr", "fahrplan"}
+deck = {"home", "stats", "twitter", "tumblr", "fahrplan"}
 
 slide_source = util.generator(function()
     return deck

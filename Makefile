@@ -13,7 +13,6 @@ update:
 	cd tumblr && ../.env/bin/python update-tumblr.py
 	cd fahrplan && ../.env/bin/python update-fahrplan.py
 	cd stats && ./update-stats.sh
-	cd analogclock && ./clock.py
 
 clean:
 	rm -rf .env
