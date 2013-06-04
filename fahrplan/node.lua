@@ -17,7 +17,7 @@ function node.render()
 
     font:write(50, 140, "Uhrzeit", 50, 0,0,0,1)
     font:write(300, 140, "Linie", 50, 0,0,0,1)
-    font:write(400, 140, "Uhrzeit", 50, 0,0,0,1)
+    font:write(400, 140, "Richtung", 50, 0,0,0,1)
     font:write(750, 140, "Verspätung", 50, 0,0,0,1)
     for idx, fahrt in ipairs(fahrplan) do
         font:write(50, 150 + 50 * idx, fahrt.uhrzeit, 40, 0,0,0,1)
