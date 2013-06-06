@@ -1,4 +1,4 @@
-local INTERVAL = 30
+local INTERVAL = 10
 gl.setup(1024, 768)
 
 deck = {"home", "stats", "twitter", "tumblr", "fahrplan"}
