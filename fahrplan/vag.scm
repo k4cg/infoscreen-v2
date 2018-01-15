@@ -1,6 +1,6 @@
 (use medea http-client miscmacros uri-common udp tcp)
 
-(determine-proxy
+#;(determine-proxy
  (lambda (u) (uri-reference "http://proxy:3128/")))
 
 (define (cleanup-times entry)
@@ -31,7 +31,7 @@
 
   (let loop ()
     (send-time)
-    (let ((deps (get-departures 1103)))
+    (let ((deps (get-departures 510)))
       (define-values (in out) (tcp-connect "localhost" 4444))
       (print (read-line in))
       (display "fahrplan" out)(newline out)
