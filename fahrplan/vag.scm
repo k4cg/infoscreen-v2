@@ -7,9 +7,11 @@
   (let* ((t-ist (string->time (alist-ref 'AbfahrtszeitIst entry) "%Y-%m-%dT%T%z"))
         (t-soll (string->time (alist-ref 'AbfahrtszeitSoll entry) "%Y-%m-%dT%T%z"))
         (verspaetung (modulo (- (local-time->seconds t-ist) (local-time->seconds t-soll)) 60)))
+    (vector-set! t-ist 8 #t)
+    (vector-set! t-soll 8 #t)
     (cons (cons 'Verspaetung verspaetung)
           (alist-update 'AbfahrtszeitIst (local-time->seconds t-ist)
-                  (alist-update 'AbfahrtszeitSoll (local-time->seconds t-soll) entry)))))
+                        (alist-update 'AbfahrtszeitSoll (local-time->seconds t-soll) entry)))))
 
 (define (get-departures station-id)
       (let* ((res (with-input-from-request
