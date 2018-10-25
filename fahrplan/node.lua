@@ -26,8 +26,9 @@ local fahrplan = N.fahrplan or {["Haltestelle"] = "", ["Abfahrten"] = {}}
 
 function node.render()
     gl.clear(0, 0, 0, 1)
-    font:write(50, 30, "Abfahrten ab", 35, 0.5,0.6,0.3,1)
-    font:write(50, 60, fahrplan.Haltestelle, 70, 0.8,0.8,0.3,1)
+--    gl.rotate(90, 1, 1, 0)
+    font:write(50, 30, "Abfahrten ab", 35, 0.0,0.1,0.0,1)
+    font:write(50, 70, fahrplan.Haltestelle, 90, 0,1,0,1)
   --  logo:draw(800, 60, 1000, 120)
 
     font:write(50, 140, "Abfahrt", 50,  0.5,0.6,0.3,1)
@@ -43,13 +44,13 @@ function node.render()
            departure = "in " .. departure  .. " min."
         end
         if (fahrt.AbfahrtszeitSoll > current_seconds) then
-                font:write(50, 150 + 50 * idx, departure, 40, 0.8,0.8,0.3,1)
-                font:write(330, 150 + 50 * idx, fahrt.Linienname, 40,  0.8,0.8,0.3,1)
-                font:write(400, 150 + 50 * idx, fahrt.Richtungstext, 40, 0.8,0.8,0.3,1)
+                font:write(50, 150 + 70 * idx, departure, 80, 0,1,0,1)
+                font:write(350, 150 + 70 * idx, fahrt.Linienname, 80,  0,1,0,1)
+                font:write(440, 150 + 70 * idx, fahrt.Richtungstext, 80, 0,1,0,1)
                 if fahrt.Verspaetung > 0 then
-                      font:write(830, 150 + 50 * idx, "+" .. fahrt.Verspaetung, 40, 0.5,0.4,0.8,1)
+                      font:write(900, 150 + 70 * idx, "+" .. fahrt.Verspaetung, 80, 0.5,0.4,0.8,1)
                 else
-                      font:write(830, 150 + 50 * idx, "0", 40, 0.8,0.8,0.3,1)
+                      font:write(900, 150 + 70 * idx, "0", 80, 0.8,0.8,0.3,1)
                 end
                 idx = idx + 1
                 if idx > 30 then
@@ -57,7 +58,7 @@ function node.render()
                 end
         end
     end
-    font:write(WIDTH - 150, HEIGHT - 50, current_time, 50, 0.8,0.8,0.3,1)
+    font:write(WIDTH - 240, 0, current_time, 80, 0,1,0,1)
 end
 
 node.event("input", function(line, client)
