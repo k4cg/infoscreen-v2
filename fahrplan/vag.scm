@@ -1,4 +1,4 @@
-(use medea http-client miscmacros uri-common udp tcp)
+(import medea http-client miscmacros uri-common (chicken tcp) udp6 (chicken time) (chicken format) (chicken time posix) (chicken pretty-print) (chicken io))
 
 #;(determine-proxy
  (lambda (u) (uri-reference "http://proxy:3128/")))
@@ -7,17 +7,16 @@
   (let* ((t-ist (string->time (alist-ref 'AbfahrtszeitIst entry) "%Y-%m-%dT%T%z"))
         (t-soll (string->time (alist-ref 'AbfahrtszeitSoll entry) "%Y-%m-%dT%T%z"))
         (verspaetung (modulo (- (local-time->seconds t-ist) (local-time->seconds t-soll)) 60)))
-    (vector-set! t-ist 8 #t)
-    (vector-set! t-soll 8 #t)
     (cons (cons 'Verspaetung verspaetung)
           (alist-update 'AbfahrtszeitIst (local-time->seconds t-ist)
                         (alist-update 'AbfahrtszeitSoll (local-time->seconds t-soll) entry)))))
 
 (define (get-departures station-id)
       (let* ((res (with-input-from-request
-                   (sprintf "http://start.vag.de/dm/api/v1/abfahrten/VGN/~a?product=Bus%2CTram%2CUBahn&timespan=30&limitcount=50" station-id)
+                   (sprintf "http://start.vag.de/dm/api/v1/abfahrten/VGN/~a?product=Bus%2CTram%2CUBahn%2CSBahn%2CRBahn&timespan=30&limitcount=50" station-id)
                    #f read-json))
              (departures (alist-ref 'Abfahrten res)))
+(pp departures)
          (cons (cons 'Haltestelle (alist-ref 'Haltestellenname res))
               `((Abfahrten . ,(list->vector (map cleanup-times (vector->list departures))))))))
 
