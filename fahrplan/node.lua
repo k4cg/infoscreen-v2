@@ -31,10 +31,10 @@ function node.render()
     font:write(50, 70, fahrplan.Haltestelle, 90, 0,1,0,1)
   --  logo:draw(800, 60, 1000, 120)
 
-    font:write(50, 140, "Abfahrt", 50,  0.5,0.6,0.3,1)
-    font:write(300, 140, "Linie", 50,  0.5,0.6,0.3,1)
-    font:write(400, 140, "Richtung", 50, 0.5,0.6,0.3,1)
-    font:write(750, 140, "Verspätung", 50, 0.5,0.6,0.3,1)
+    font:write(50, 170, "Abfahrt", 60,  0.8,0.8,0.8,1)
+    font:write(270, 170, "Linie", 60,  0.8,0.8,0.8,1)
+    font:write(440, 170, "Richtung", 60, 0.8,0.8,0.8,1)
+    font:write(850, 170, "Verspätung", 60, 0.8,0.8,0.8,1)
     idx = 1
     for k,fahrt in ipairs(fahrplan.Abfahrten) do
 	if os.date("*t").isdst then
