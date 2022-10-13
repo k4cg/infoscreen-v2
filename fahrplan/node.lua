@@ -37,23 +37,28 @@ function node.render()
     font:write(750, 140, "Verspätung", 50, 0.5,0.6,0.3,1)
     idx = 1
     for k,fahrt in ipairs(fahrplan.Abfahrten) do
-        departure = math.floor((fahrt.AbfahrtszeitSoll - current_seconds) / 60)
+	if os.date("*t").isdst then
+	        departure = math.floor((fahrt.AbfahrtszeitSoll - 3600 - current_seconds) / 60)
+	else
+		departure = math.floor((fahrt.AbfahrtszeitSoll - current_seconds) / 60)
+	end
+
         if departure == 0 then
            departure = "jetzt"
         else
-           departure = "in " .. departure  .. " min."
+           departure = "in " .. departure  .. "'"
         end
         if (fahrt.AbfahrtszeitSoll > current_seconds) then
                 font:write(50, 150 + 70 * idx, departure, 80, 0,1,0,1)
-                font:write(350, 150 + 70 * idx, fahrt.Linienname, 80,  0,1,0,1)
+                font:write(270, 150 + 70 * idx, fahrt.Linienname, 80,  0,1,0,1)
                 font:write(440, 150 + 70 * idx, fahrt.Richtungstext, 80, 0,1,0,1)
                 if fahrt.Verspaetung > 0 then
-                      font:write(900, 150 + 70 * idx, "+" .. fahrt.Verspaetung, 80, 0.5,0.4,0.8,1)
+                      font:write(970, 150 + 70 * idx, "" .. fahrt.Verspaetung, 80, 0.8,0.8,0.3,1)
                 else
-                      font:write(900, 150 + 70 * idx, "0", 80, 0.8,0.8,0.3,1)
+                      --font:write(970, 150 + 70 * idx, "0", 80, 0.8,0.8,0.3,1)
                 end
                 idx = idx + 1
-                if idx > 30 then
+                if idx > 23 then
                    break
                 end
         end

@@ -1,5 +1,5 @@
-local INTERVAL = 10
-gl.setup(1024, 768)
+local INTERVAL = 20
+gl.setup(1080,1920)
 
 deck = {"home", "fahrplan", "wifi"}
 

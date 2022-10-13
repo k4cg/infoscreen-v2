@@ -1,4 +1,4 @@
-gl.setup(1024, 768)
+gl.setup(1080,1920)
 
 gh = resource.load_image("Octocat.png")
 font = resource.load_font("miso-regular.ttf")
@@ -19,5 +19,5 @@ function node.render()
     font:write(290, 650, "please contribute:         /k4cg/infoscreen-v2", 40, 0, 0.5, 0, 1)
     gh:draw(530, 640, 600, 700)
 
-    logo:draw(0, 0, new_w , new_h)
+    logo:draw(0, 0, w, h)
 end
