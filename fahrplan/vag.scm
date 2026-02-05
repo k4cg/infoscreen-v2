@@ -13,7 +13,7 @@
 
 (define (get-departures station-id)
       (let* ((res (with-input-from-request
-                   (sprintf "http://start.vag.de/dm/api/v1/abfahrten/VGN/~a?product=Bus%2CTram%2CUBahn%2CSBahn%2CRBahn&timespan=30&limitcount=50" station-id)
+                   (sprintf "http://start.vag.de/dm/api/v1/abfahrten/VGN/~a?product=Bus%2CTram%2CUBahn%2CSBahn%2CRBahn&timespan=30&limitcount=50&timedelay=5" station-id)
                    #f read-json))
              (departures (alist-ref 'Abfahrten res)))
 (pp departures)
